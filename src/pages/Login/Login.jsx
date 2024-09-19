@@ -5,8 +5,8 @@ import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
     return (
-        <div className="pt-28 pb-10 flex flex-col items-center w-4/5 max-w-screen-lg mx-auto">
-            <h1 className="text-4xl font-bold py-8 w-full m-8 text-center">EEPL</h1>
+        <div className=" pb-10 flex flex-col items-center w-full max-w-screen-lg mx-auto">
+            <h1 className="text-4xl font-bold py-2 w-full m-8 text-center">EEPL</h1>
             <div className="w-full max-w-md border border-blue-200 rounded-lg p-8">
                 <form className="flex flex-col space-y-4">
                     <div className="relative">

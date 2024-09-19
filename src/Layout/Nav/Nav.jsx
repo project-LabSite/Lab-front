@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import schoolLogo from '../../assets/images/gnu-logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import Modal from '../../components/Modal/Modal';
+import Login from '../../pages/Login/Login';
 
 const navItems = [
     { kr: '홈', en: 'Home', link: '/' },
@@ -15,6 +17,7 @@ const navItems = [
 const Nav = () => {
     const [toggle, setToggle] = useState(false);
     const [lang, setLang] = useState('KR');
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
     const handleLangSelectToggle = () => {
         setToggle((prevToggle) => !prevToggle);
@@ -25,6 +28,9 @@ const Nav = () => {
         setLang(lang);
         setToggle(false);
     };
+
+    const openLoginModal = () => setIsLoginModalOpen(true);
+    const closeLoginModal = () => setIsLoginModalOpen(false);
 
     return (
         <div className="fixed top-0 left-0 w-full flex items-center justify-around py-5 bg-white shadow-md z-50">
@@ -43,9 +49,9 @@ const Nav = () => {
             </ul>
             <div className="flex text-lg">
                 <div>
-                    <a href="/signin" className="mx-5 pr-5">
+                    <button onClick={openLoginModal} className="mx-5 pr-5">
                         Sign In
-                    </a>
+                    </button>
                 </div>
                 <div className="relative inline-block cursor-pointer mx-5 px-5">
                     <div onClick={handleLangSelectToggle}>
@@ -70,6 +76,9 @@ const Nav = () => {
                     </div>
                 </div>
             </div>
+            <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
+                <Login />
+            </Modal>
         </div>
     );
 };
