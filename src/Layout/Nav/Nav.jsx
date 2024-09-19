@@ -12,7 +12,6 @@ const navItems = [
     { kr: '문의', en: 'Contact', link: '/contact' },
 ];
 
-
 const Nav = () => {
     const [toggle, setToggle] = useState(false);
     const [lang, setLang] = useState('KR');
@@ -44,7 +43,7 @@ const Nav = () => {
             </ul>
             <div className="flex text-lg">
                 <div>
-                    <a href="#singin" className="mx-5 pr-5">
+                    <a href="/signin" className="mx-5 pr-5">
                         Sign In
                     </a>
                 </div>
