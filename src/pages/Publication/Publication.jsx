@@ -1,183 +1,30 @@
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PublicationCard from '../../components/Card/PublicationCard';
 import PublicationSide from '../../components/Common/PublicationSide';
-
-const publicationItems = [
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2024',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2024',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2024',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2024',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2023',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2023',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2023',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2023',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2022',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2022',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2022',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2022',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2021',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2021',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2021',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2021',
-    },
-];
-
-const filterPublicationsByYear = (year) => {
-    return publicationItems.filter((item) => item.RegistrationYear === year);
-};
-
-const getYears = () => {
-    const years = publicationItems.map((item) => item.RegistrationYear);
-    return [...new Set(years)].sort((a, b) => b - a);
-};
-
-const publicationYear = getYears();
+import GoogleSheetData from '../../service/Publication/PublicationData';
 
 const Publication = () => {
+    const [publicationData, setPublicationData] = useState([]);
     const yearRef = useRef({});
+
+    useEffect(() => {
+        const getPublicationData = async () => {
+            const data = await GoogleSheetData();
+            setPublicationData(data);
+        };
+        getPublicationData();
+    },[])
+
+    const filterPublicationsByYear = (year) => {
+        return publicationData.filter((item) => item.year === year);
+    };
+
+    const getYears = () => {
+        const years = publicationData.map((item) => item.year);
+        return [...new Set(years)].sort((a, b) => b - a);
+    };
+
+    const publicationYear = getYears();
 
     const yearScroll = (year) => {
         const clickYear = yearRef.current[year];
