@@ -75,7 +75,7 @@ const Publication = () => {
 
     return (
         <div className="pt-28 pb-10 flex flex-col items-center w-4/5 max-w-screen-lg mx-auto">
-            <div className="fixed top-1/4 bg-slate-600" style={{ right: '0' }}>
+            <div className="fixed top-1/4 bg-slate-600 right-0 hidden md:block">
                 {sidebarYears.map((year, index) => (
                     <PublicationSide
                         key={index}
