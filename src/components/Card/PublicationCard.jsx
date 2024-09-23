@@ -2,18 +2,17 @@ const PublicationCard = ({ publicationItems }) => {
     return (
         <div>
             {publicationItems.map((item, index) => (
-                <div className="bg-white shadow-md">
+                <a href={item.publication_link } className="bg-white shadow-md">
                     <div key={index} className="mb-5">
                         <div>
-                            <span className="text-blue-500 font-bold">{item.Author}</span>
-                            {item.Authors} {item.Year}
+                            {item.author} {item.year}
                         </div>
-                        <div>{item.Title}</div>
+                        <div>{item.title}</div>
                         <div>
-                            <span className="text-blue-500">{item.Journal}</span> {item.Volume}, {item.Page}
+                            <span className="text-blue-500">{item.journal}</span>
                         </div>
                     </div>
-                </div>
+                </a>
             ))}
         </div>
     );
