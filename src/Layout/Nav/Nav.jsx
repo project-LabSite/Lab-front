@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import schoolLogo from '../../assets/images/gnu-logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -36,14 +37,14 @@ const Nav = () => {
         <div className="fixed top-0 left-0 w-full flex items-center justify-around py-5 bg-white shadow-md z-50">
             <div className="flex items-center">
                 <div className="text-3xl font-bold px-5 border-r-2">EEPL</div>
-                <a href="https://gnu.ac.kr">
+                <Link to="https://gnu.ac.kr">
                     <img src={schoolLogo} alt="gnu-logo" className="w-40" />
-                </a>
+                </Link>
             </div>
             <ul className="flex">
                 {navItems.map((item, index) => (
                     <li key={index} className="mx-5 text-lg text-center" style={{ width: '120px' }}>
-                        <a href={item.link}>{lang === 'KR' ? item.kr : item.en}</a>
+                        <Link to={item.link}>{lang === 'KR' ? item.kr : item.en}</Link>
                     </li>
                 ))}
             </ul>
@@ -77,7 +78,7 @@ const Nav = () => {
                 </div>
             </div>
             <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
-                <Login />
+                <Login onClose={closeLoginModal} />
             </Modal>
         </div>
     );
