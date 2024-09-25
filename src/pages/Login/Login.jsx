@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
-const Login = () => {
+const Login = ({onClose}) => {
     return (
         <div className=" pb-10 flex flex-col items-center w-full max-w-screen-lg mx-auto">
             <h1 className="text-4xl font-bold py-2 w-full m-8 text-center">EEPL</h1>
@@ -56,7 +56,11 @@ const Login = () => {
                     </button>
                 </form>
                 <div className="mt-4 flex justify-end text-sm text-gray-400">
-                    <Link to="/signup" className="hover:underline after:content-['|'] after:mx-2 after:text-gray-300">
+                    <Link
+                        to="/signup"
+                        className="hover:underline after:content-['|'] after:mx-2 after:text-gray-300"
+                        onClick={onClose}
+                    >
                         회원 가입
                     </Link>
                     <Link to="/re-password" className="hover:underline">
