@@ -1,8 +1,7 @@
 const GoogleSheetData = async () => {
-    const apiKey = 'AIzaSyBeSewnHdPxxqJDEpyHKpjxgV16NxZzznI'; 
-    const sheetId = '1oyZ9SXKkPqAblhuLpiojxCQ42Eunvar1fddnhvUQfls'; 
-    const range = '시트1!A1:G100'; 
-
+    const apiKey = 'AIzaSyBeSewnHdPxxqJDEpyHKpjxgV16NxZzznI';
+    const sheetId = '1oyZ9SXKkPqAblhuLpiojxCQ42Eunvar1fddnhvUQfls';
+    const range = '시트1!A1:G100';
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
 
     try {
@@ -14,18 +13,16 @@ const GoogleSheetData = async () => {
             const rows = result.values.slice(1);
             const publicationData = rows.map((row) => {
                 return headers.reduce((obj, header, index) => {
-                    obj[header] = row[index] || ''; 
+                    obj[header] = row[index] || '';
                     return obj;
                 }, {});
             });
-            console.log(publicationData);
-            return publicationData; 
+            return publicationData;
         } else {
-            console.error('데이터가 없습니다.');
             return [];
         }
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error(error);
         return [];
     }
 };
