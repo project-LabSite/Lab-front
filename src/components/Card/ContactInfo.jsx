@@ -14,7 +14,7 @@ const CotactInfo = () => {
                 </div>
             </div>
             <div className="border-r-4 border-2 w-72 m-2">
-                <div className="font-bold text-2xl m-2">학생</div>
+                <div className="font-bold text-2xl m-2">학생들</div>
                 <div className="font-bold text-lg m-2">서영진</div>
                 <div className="flex m-2">
                     <img src="aa" alt="메일 이미지"></img>
