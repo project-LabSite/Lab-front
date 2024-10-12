@@ -7,7 +7,7 @@ const PublicationSide = ({ year, yearScroll, isSelected }) => {
                     isSelected ? 'text-xl font-bold bg-slate-800' : ''
                 } hover:bg-slate-700`}
             >
-                {year}
+                {year === '2018' ? `${year}~` : year}
             </button>
         </div>
     );
