@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import PublicationCard from '../../components/Card/PublicationCard';
 import PublicationSide from '../../components/Common/PublicationSide';
 import GoogleSheetData from '../../service/Publication/PublicationData';
@@ -29,7 +29,7 @@ const Publication = () => {
     const publicationYear = getYears();
     const sidebarYears = publicationYear.filter((year) => year >= 2018);
 
-    const handleScroll = () => {
+    const handleScroll = useCallback(() => {
         let currentYear = null;
 
         publicationYear.forEach((year) => {
@@ -43,12 +43,10 @@ const Publication = () => {
         });
         if (currentYear && currentYear <= '2018') {
             setSelectedYear('2018');
-            console.log(selectedYear);
         } else {
             setSelectedYear(currentYear);
-            console.log(selectedYear);
         }
-    };
+    },[publicationYear]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -56,7 +54,7 @@ const Publication = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [publicationYear]);
+    }, [handleScroll]);
 
     const yearScroll = (year) => {
         const clickYear = yearRef.current[year];
