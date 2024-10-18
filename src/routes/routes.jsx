@@ -5,6 +5,7 @@ import Nav from '../Layout/Nav/Nav';
 import Main from '../pages/Main/Main';
 import Publication from '../pages/Publication/Publication';
 import Sign from '../pages/Sign/Sign';
+import TextEditor from '../components/Common/TextEditor/TextEditor';
 import Modal from '../components/Modal/Modal';
 import Footer from '../Layout/Footer/Footer';
 
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/" element={<Main />} />
                 <Route path="/publication" element={<Publication />} />
                 <Route path="/sign" element={<Sign />} />
+                <Route path="/ckeditor5" element={<TextEditor/>}/>
             </Routes>
             {isLoginModalOpen && (
                 <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
