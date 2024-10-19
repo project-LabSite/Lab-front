@@ -87,7 +87,7 @@ const NewsCardItem = [
     },
 ]
 
-const News = () => {
+const Research = () => {
     return (
         <div className="pt-28 pb-10 flex flex-col items-center w-4/5 max-w-screen-lg mx-auto">
             <div className="text-4xl font-bold py-8 border-b-2 border-black w-full m-8 text-center">소식</div>
@@ -100,4 +100,4 @@ const News = () => {
     );
 };
 
-export default News;
+export default Research;
