@@ -6,6 +6,7 @@ import Main from '../pages/Main/Main';
 import Publication from '../pages/Publication/Publication';
 import Contact from '../pages/Contact/Contact';
 import Research from '../pages/Research/Research';
+import Member from '../pages/Member/Member';
 import Sign from '../pages/Sign/Sign';
 import TextEditor from '../components/Common/TextEditor/TextEditor';
 import Modal from '../components/Modal/Modal';
@@ -41,7 +42,8 @@ function AppRoutes() {
                 <Route path="/" element={<Main />} />
                 <Route path="/publication" element={<Publication />} />
                 <Route path='/contact' element={<Contact />} />
-                <Route path='/research' element={<Research/>}/>
+                <Route path='/research' element={<Research />} />
+                <Route path='/member' element={<Member/>}/>
                 <Route path="/sign" element={<Sign />} />
                 <Route path="/publish" element={<TextEditor />} />
             </Routes>
