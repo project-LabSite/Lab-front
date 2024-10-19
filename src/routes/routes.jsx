@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Nav from '../Layout/Nav/Nav';
 import Main from '../pages/Main/Main';
 import Publication from '../pages/Publication/Publication';
-import Contact from '../pages/Contact/Contact';
 import Sign from '../pages/Sign/Sign';
 import Research from '../pages/Research/Research';
 import TextEditor from '../components/Common/TextEditor/TextEditor';
@@ -41,7 +40,6 @@ function AppRoutes() {
                 <Route path="/" element={<Main />} />
                 <Route path="/publication" element={<Publication />} />
                 <Route path='/research' element={<Research/>}/>
-                <Route path='/contact' element={<Contact />} />
                 <Route path="/sign" element={<Sign />} />
                 <Route path="/publish" element={<TextEditor />} />
             </Routes>

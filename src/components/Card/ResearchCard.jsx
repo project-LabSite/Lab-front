@@ -1,4 +1,4 @@
-const NewsCard = ({ item }) => {
+const ResearchCard = ({ item }) => {
     return (
         <div className="bg-slate-600 w-60 h-96 flex flex-col ml-4 mb-8 drop-shadow-lg">
             <div className="bg-slate-400 w-48 h-full mx-auto flex flex-col justify-around">
@@ -17,4 +17,4 @@ const NewsCard = ({ item }) => {
 };
 
 
-export default NewsCard;
+export default ResearchCard;

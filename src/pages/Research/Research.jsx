@@ -1,4 +1,4 @@
-import NewsCard from "../../components/Card/NewsCard";
+import ResearchCard from "../../components/Card/ResearchCard";
 
 const NewsCardItem = [
     {
@@ -93,7 +93,7 @@ const Research = () => {
             <div className="text-4xl font-bold py-8 border-b-2 border-black w-full m-8 text-center">소식</div>
             <div className="flex flex-row flex-wrap justify-center">
                 {NewsCardItem.map((item) => (
-                    <NewsCard item={item} />
+                    <ResearchCard item={item} />
                 ))}
             </div>
         </div>
