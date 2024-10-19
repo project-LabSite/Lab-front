@@ -5,7 +5,6 @@ import Nav from '../Layout/Nav/Nav';
 import Main from '../pages/Main/Main';
 import Publication from '../pages/Publication/Publication';
 import Contact from '../pages/Contact/Contact';
-import Login from '../pages/Login/Login';
 import Sign from '../pages/Sign/Sign';
 import Research from '../pages/Research/Research';
 import TextEditor from '../components/Common/TextEditor/TextEditor';

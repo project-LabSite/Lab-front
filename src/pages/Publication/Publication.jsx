@@ -1,183 +1,60 @@
-import { useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import PublicationCard from '../../components/Card/PublicationCard';
 import PublicationSide from '../../components/Common/PublicationSide';
-
-const publicationItems = [
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2024',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2024',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2024',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2024',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2023',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2023',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2023',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2023',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2022',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2022',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2022',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2022',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2021',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2021',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2021',
-    },
-    {
-        Author: 'Park, C. H.',
-        Authors: ', Lee, S. Y., Hwang, D. S., Shin, D. W.,Cho, D. H., Lee, K. H., ... & Lee, Y. M. ',
-        Year: '(2016)',
-        Title: 'Nanocrack-regulated self-humidifying membranes.',
-        Journal: 'Nature,',
-        Volume: '532(7600)',
-        Page: '480-483',
-        RegistrationYear: '2021',
-    },
-];
-
-const filterPublicationsByYear = (year) => {
-    return publicationItems.filter((item) => item.RegistrationYear === year);
-};
-
-const getYears = () => {
-    const years = publicationItems.map((item) => item.RegistrationYear);
-    return [...new Set(years)].sort((a, b) => b - a);
-};
-
-const publicationYear = getYears();
+import GoogleSheetData from '../../service/Publication/PublicationData';
 
 const Publication = () => {
+    const [publicationData, setPublicationData] = useState([]);
+    const [selectedYear, setSelectedYear] = useState(null);
     const yearRef = useRef({});
+
+    useEffect(() => {
+        const getPublicationData = async () => {
+            const data = await GoogleSheetData();
+            setPublicationData(data);
+        };
+        getPublicationData();
+    }, []);
+
+    const filterPublicationsByYear = (year) => {
+        return publicationData.filter((item) => item.year === year);
+    };
+
+    const getYears = () => {
+        const years = publicationData.map((item) => item.year);
+        const getYears = [...new Set(years)].sort((a, b) => b - a);
+        return getYears;
+    };
+
+    const publicationYear = getYears();
+    const sidebarYears = publicationYear.filter((year) => year >= 2018);
+
+    const handleScroll = useCallback(() => {
+        let currentYear = null;
+
+        publicationYear.forEach((year) => {
+            const yearElement = yearRef.current[year];
+            if (yearElement) {
+                const rect = yearElement.getBoundingClientRect();
+                if (rect.top <= window.innerHeight * 0.2 && rect.bottom > 0) {
+                    currentYear = year;
+                }
+            }
+        });
+        if (currentYear && currentYear <= '2018') {
+            setSelectedYear('2018');
+        } else {
+            setSelectedYear(currentYear);
+        }
+    },[publicationYear]);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [handleScroll]);
 
     const yearScroll = (year) => {
         const clickYear = yearRef.current[year];
@@ -191,16 +68,21 @@ const Publication = () => {
                 behavior: 'smooth',
             });
         }
+        setSelectedYear(year);
     };
+
     return (
         <div className="pt-28 pb-10 flex flex-col items-center w-4/5 max-w-screen-lg mx-auto">
-            {/* 사이드바 */}
-            <div className="fixed top-1/4 bg-slate-600" style={{ right: '10%' }}>
-                {publicationYear.map((year, index) => (
-                    <PublicationSide key={index} year={year} yearScroll={() => yearScroll(year)} />
+            <div className="fixed top-1/4 bg-slate-600 right-0 hidden md:block">
+                {sidebarYears.map((year, index) => (
+                    <PublicationSide
+                        key={index}
+                        year={year}
+                        yearScroll={() => yearScroll(year)}
+                        isSelected={year === selectedYear}
+                    />
                 ))}
             </div>
-            {/* 메인 */}
             <div className="text-4xl font-bold py-8 border-b-2 border-black w-full m-8 text-center">국내외 논문</div>
             <div className="flex flex-col items-center w-full px-4">
                 {publicationYear.map((year, index) => (

@@ -1,8 +1,13 @@
-const PublicationSide = ({ year, yearScroll }) => {
+const PublicationSide = ({ year, yearScroll, isSelected }) => {
     return (
-        <div className="mb-2">
-            <button onClick={yearScroll} className="block py-2 px-4 text-white hover:bg-slate-700 rounded">
-                {year}
+        <div>
+            <button
+                onClick={yearScroll}
+                className={`block py-4 w-32 text-white rounded ${
+                    isSelected ? 'text-xl font-bold bg-slate-800' : ''
+                } hover:bg-slate-700`}
+            >
+                {year === '2018' ? `${year}~` : year}
             </button>
         </div>
     );
