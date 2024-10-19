@@ -1,26 +1,53 @@
 import '../assets/styles/tailwind.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Nav from '../Layout/Nav/Nav';
 import Main from '../pages/Main/Main';
 import Publication from '../pages/Publication/Publication';
-import Cotact from '../pages/Contact/Contact';
+import Contact from '../pages/Contact/Contact';
 import Login from '../pages/Login/Login';
-import Signup from '../pages/Signup/Signup'
+import Sign from '../pages/Sign/Sign';
+import Research from '../pages/Research/Research';
+import TextEditor from '../components/Common/TextEditor/TextEditor';
+import Modal from '../components/Modal/Modal';
+import PublishButton from '../components/Common/PublishButton';
 import Footer from '../Layout/Footer/Footer';
 
 function App() {
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+    const openLoginModal = () => setIsLoginModalOpen(true);
+    const closeLoginModal = () => setIsLoginModalOpen(false);
+
     return (
         <BrowserRouter>
-            <Nav />
+            <Nav openLoginModal={openLoginModal} />
+            <AppRoutes />
+            {isLoginModalOpen && (
+                <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
+                    <Sign />
+                </Modal>
+            )}
+            <Footer />
+        </BrowserRouter>
+    );
+}
+
+function AppRoutes() {
+    const location = useLocation();
+
+    return (
+        <>
             <Routes>
                 <Route path="/" element={<Main />} />
                 <Route path="/publication" element={<Publication />} />
-                <Route path="/signin" element={<Login />} />
-                <Route path='/signup' element={<Signup/>}/>
-                <Route path='/contact' element={<Cotact />}/>
+                <Route path='/research' element={<Research/>}/>
+                <Route path='/contact' element={<Contact />} />
+                <Route path="/sign" element={<Sign />} />
+                <Route path="/publish" element={<TextEditor />} />
             </Routes>
-            <Footer />
-        </BrowserRouter>
+            {(location.pathname === '/research' || location.pathname === '/news') && <PublishButton />}
+        </>
     );
 }
 
