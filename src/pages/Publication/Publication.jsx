@@ -2,16 +2,19 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import PublicationCard from '../../components/Card/PublicationCard';
 import PublicationSide from '../../components/Common/PublicationSide';
 import GoogleSheetData from '../../service/Publication/PublicationData';
+import '../../assets/styles/publication.css'
 
 const Publication = () => {
     const [publicationData, setPublicationData] = useState([]);
     const [selectedYear, setSelectedYear] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const yearRef = useRef({});
 
     useEffect(() => {
         const getPublicationData = async () => {
             const data = await GoogleSheetData();
             setPublicationData(data);
+            setIsLoading(false);
         };
         getPublicationData();
     }, []);
@@ -46,7 +49,7 @@ const Publication = () => {
         } else {
             setSelectedYear(currentYear);
         }
-    },[publicationYear]);
+    }, [publicationYear]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -72,27 +75,37 @@ const Publication = () => {
     };
 
     return (
-        <div className="pt-28 pb-10 flex flex-col items-center w-4/5 max-w-screen-lg mx-auto">
-            <div className="fixed top-1/4 bg-slate-600 right-0 hidden md:block">
+        <div className="pt-28 pb-10 flex flex-col items-center w-4/5 max-w-screen-lg mx-auto mb-20">
+            <div className="fixed top-1/4 bg-gray-800 text-white shadow-lg rounded right-[5%] hidden md:block">
                 {sidebarYears.map((year, index) => (
                     <PublicationSide
                         key={index}
                         year={year}
                         yearScroll={() => yearScroll(year)}
                         isSelected={year === selectedYear}
+                        className={`cursor-pointer px-4`}
                     />
                 ))}
             </div>
-            <div className="text-4xl font-bold py-8 border-b-2 border-black w-full m-8 text-center">국내외 논문</div>
+            <div className="pl-6 text-4xl text-gray-800 font-medium py-4 border-b-2 border-blue-800 w-full mb-8">
+                국내외 논문
+            </div>
             <div className="flex flex-col items-center w-full px-4">
-                {publicationYear.map((year, index) => (
-                    <div key={index} ref={(el) => (yearRef.current[year] = el)} className="mb-8 w-full">
-                        <span className="text-3xl font-semibold">{year}</span>
-                        <div className="mt-4 ml-4">
-                            <PublicationCard publicationItems={filterPublicationsByYear(year)} />
-                        </div>
+                {isLoading ? (
+                    <div className="flex flex-col items-center justify-center h-64">
+                        <div className="loader border-t-4 border-blue-800 rounded-full w-12 h-12 mb-4 animate-spin"></div>
+                        <div className="text-gray-600">Loading publications...</div>
                     </div>
-                ))}
+                ) : (
+                    publicationYear.map((year, index) => (
+                        <div key={index} ref={(el) => (yearRef.current[year] = el)} className="mb-8 w-full">
+                            <div className="text-4xl text-center font-semibold gray-800">{year}</div>
+                            <div className="mt-4 ml-4 shadow-md rounded-lg p-6 bg-white">
+                                <PublicationCard publicationItems={filterPublicationsByYear(year)} />
+                            </div>
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     );
