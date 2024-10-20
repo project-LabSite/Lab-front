@@ -39,7 +39,7 @@ const Nav = ({ openLoginModal }) => {
                 {navItems.map((item, index) => (
                     <li
                         key={index}
-                        className="h-full flex items-center justify-center text-lg text-center hover:bg-blue-400 hover:text-white transition-colors duration-200"
+                        className="h-full flex items-center justify-center text-lg text-center hover:bg-blue-800 hover:text-white transition-colors duration-200"
                         style={{ width: '150px' }}
                     >
                         <Link to={item.link} className="w-full h-full flex items-center justify-center">
