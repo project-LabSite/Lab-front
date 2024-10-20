@@ -28,17 +28,23 @@ const Nav = ({ openLoginModal }) => {
     };
 
     return (
-        <div className="fixed top-0 left-0 w-full flex items-center justify-around py-5 bg-white shadow-md z-50">
+        <div className="fixed top-0 left-0 w-full flex items-center justify-around h-[88px] bg-white shadow-md z-50">
             <div className="flex items-center">
-                <div className="text-3xl font-bold px-5 border-r-2">EEPL</div>
+                <Link to='/' className="text-3xl font-bold px-5 border-r-2">EEPL</Link>
                 <a href="https://gnu.ac.kr">
                     <img src={schoolLogo} alt="gnu-logo" className="w-32 min-w-32" />
                 </a>
             </div>
-            <ul className="flex flex-wrap justify-center">
+            <ul className="flex flex-wrap justify-center items-center h-full">
                 {navItems.map((item, index) => (
-                    <li key={index} className="mx-5 text-lg text-center" style={{ width: '120px' }}>
-                        <Link to={item.link}>{lang === 'KR' ? item.kr : item.en}</Link>
+                    <li
+                        key={index}
+                        className="h-full flex items-center justify-center text-lg text-center hover:bg-blue-800 hover:text-white transition-colors duration-200"
+                        style={{ width: '150px' }}
+                    >
+                        <Link to={item.link} className="w-full h-full flex items-center justify-center">
+                            {lang === 'KR' ? item.kr : item.en}
+                        </Link>
                     </li>
                 ))}
             </ul>
