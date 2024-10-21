@@ -54,7 +54,9 @@ const ResearchCardItem = [
 const Research = () => {
     return (
         <div className="pt-28 pb-10 flex flex-col items-center w-4/5 max-w-screen-lg mx-auto mb-20">
-            <div className="text-4xl font-bold py-8 border-b-2 border-black w-full m-8 text-center">연구분야</div>
+            <div className="pl-6 text-4xl text-gray-800 font-medium py-4 border-b-2 border-blue-800 w-full mb-4">
+                연구 분야
+            </div>
             <div className="flex flex-row flex-wrap justify-between">
                 {ResearchCardItem.map((item) => (
                     <ResearchCard item={item} />
