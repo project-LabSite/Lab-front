@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+
 const CotactInfo = () => {
     return (
         <div className="flex m-4 w-full">
@@ -5,11 +8,11 @@ const CotactInfo = () => {
                 <div className="font-bold text-2xl m-2">교수</div>
                 <div className="font-bold text-lg m-2">박치훈</div>
                 <div className="flex m-2">
-                    <img src="aa" alt="전화기 이미지"></img>
+                <FontAwesomeIcon className='m-1' icon={faPhone} />
                     <div>+82-55-772-3881</div>
                 </div>
                 <div className="flex m-2">
-                    <img src="aa" alt="메일 이미지"></img>
+                    <FontAwesomeIcon className='m-1' icon={faEnvelope} />
                     <div>chp@gnu.ac.kr</div>
                 </div>
             </div>
@@ -17,7 +20,7 @@ const CotactInfo = () => {
                 <div className="font-bold text-2xl m-2">학생</div>
                 <div className="font-bold text-lg m-2">서영진</div>
                 <div className="flex m-2">
-                    <img src="aa" alt="메일 이미지"></img>
+                <FontAwesomeIcon className='m-1' icon={faEnvelope} />
                     <div>tjdudwls@gnu.ac.kr</div>
                 </div>
             </div>
