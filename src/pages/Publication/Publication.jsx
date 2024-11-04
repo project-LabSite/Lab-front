@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import PublicationCard from "../../components/Card/PublicationCard";
 import PublicationSide from "../../components/Common/PublicationSide";
-import GoogleSheetData from "../../service/Publication/PublicationData";
+import fetchScholarData from "../../service/Publication/PublicationData";
 import "../../assets/styles/publication.css";
 
 const Publication = () => {
@@ -10,11 +10,9 @@ const Publication = () => {
   const [isLoading, setIsLoading] = useState(true);
   const yearRef = useRef({});
 
-  //구글에서 크롤링할 예정
-
   useEffect(() => {
     const getPublicationData = async () => {
-      const data = await GoogleSheetData();
+      const data = await fetchScholarData();
       setPublicationData(data);
       setIsLoading(false);
     };
@@ -22,13 +20,13 @@ const Publication = () => {
   }, []);
 
   const filterPublicationsByYear = (year) => {
-    return publicationData.filter((item) => item.year === year);
+    return publicationData.filter((item) => Number(item.year) === Number(year));
   };
 
   const getYears = () => {
-    const years = publicationData.map((item) => item.year);
-    const getYears = [...new Set(years)].sort((a, b) => b - a);
-    return getYears;
+    const years = publicationData.map((item) => Number(item.year));
+    const uniqueYears = [...new Set(years)].sort((a, b) => b - a);
+    return uniqueYears;
   };
 
   const publicationYear = getYears();
@@ -46,8 +44,8 @@ const Publication = () => {
         }
       }
     });
-    if (currentYear && currentYear <= "2018") {
-      setSelectedYear("2018");
+    if (currentYear && currentYear <= 2018) {
+      setSelectedYear(2018);
     } else {
       setSelectedYear(currentYear);
     }
@@ -94,7 +92,7 @@ const Publication = () => {
       </div>
       <div className="flex flex-col items-center w-full px-4">
         {isLoading ? (
-          <div className="flex flex-col items-center justify-center h-64">
+          <div className="flex flex-col items-center justify-center h-96">
             <div className="loader border-t-4 border-blue-800 rounded-full w-12 h-12 mb-4 animate-spin"></div>
             <div className="text-gray-600">Loading publications...</div>
           </div>
@@ -106,7 +104,7 @@ const Publication = () => {
               className="mb-8 w-full"
             >
               <div className="text-4xl text-center font-semibold gray-800">
-                {year}
+                {year == 0 ? "-" : year}
               </div>
               <div className="mt-4 ml-4 shadow-md rounded-lg p-6 bg-white">
                 <PublicationCard
