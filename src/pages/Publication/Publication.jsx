@@ -104,7 +104,7 @@ const Publication = () => {
               className="mb-8 w-full"
             >
               <div className="text-4xl text-center font-semibold gray-800">
-                {year == 0 ? "-" : year}
+                {year === 0 ? "-" : year}
               </div>
               <div className="mt-4 ml-4 shadow-md rounded-lg p-6 bg-white">
                 <PublicationCard
