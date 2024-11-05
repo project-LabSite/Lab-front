@@ -1,40 +1,37 @@
 import React, { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 const KakaoLocation = () => {
     useEffect(() => {
-        const script = document.createElement('script');
-        script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=9228984e0918ae3e65cfa8976ca075b1';
-        script.async = true;
-        document.head.appendChild(script);
-
-        script.onload = () => {
-            if (window.kakao && window.kakao.maps) {
-                // Kakao 지도 SDK 로드가 완료된 후에 지도를 생성합니다.
-                const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
-                const options = {
-                    center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 중심 좌표
-                    level: 3 // 확대 레벨
-                };
-                const map = new window.kakao.maps.Map(container, options); // 지도 생성
-            } else {
-                console.error('Kakao Maps SDK is not loaded properly.');
-            }
+        const loadKakaoMaps = () => {
+            const script = document.createElement('script');
+            script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=b2c78f49de362416bcc064728c902738&autoload=false&libraries=services`;
+            script.onload = () => {
+                window.kakao.maps.load(() => {
+                    const container = document.getElementById('map');
+                    const options = {
+                        center: new window.kakao.maps.LatLng(35.156382261465886, 128.08271057929446),
+                        level: 3,
+                    };
+                    const map = new window.kakao.maps.Map(container, options);
+                });
+            };
+            document.head.appendChild(script);
         };
 
-        // 스크립트가 추가된 후에 필요할 경우 제거하는 클린업 함수
-        return () => {
-            document.head.removeChild(script);
-        };
-    }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
+        loadKakaoMaps();
+    }, []); 
 
     return (
-        <div>
-            <div id="map" className="w-64 h-52"></div>
+        <div className='m-1'>
+            <div id="map" className="w-full h-96"></div>
+            <div className='flex mt-2'>
+                <FontAwesomeIcon className='m-1' icon={faMapMarkerAlt} />
+                <div className='text-sm'>경남 진주시 내동로 139번길 8번지 내동캠퍼스 612호</div>
+            </div>
         </div>
     );
 };
 
 export default KakaoLocation;
-
-
-/* 9228984e0918ae3e65cfa8976ca075b1 */
