@@ -6,6 +6,7 @@ import Main from '../pages/Main/Main';
 import Publication from '../pages/Publication/Publication';
 import Contact from '../pages/Contact/Contact';
 import Research from '../pages/Research/Research';
+import News from '../pages/News/News';
 import NewsInfo from '../pages/NewsInfo/NewsInfo';
 import Member from '../pages/Member/Member';
 import Sign from '../pages/Sign/Sign';
@@ -45,6 +46,7 @@ function AppRoutes() {
                 <Route path="/publication" element={<Publication />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/research" element={<Research />} />
+                <Route path='/news' element={<News />} />
                 <Route path="/news/1" element={<NewsInfo />} />
                 <Route path="/member" element={<Member />} />
                 <Route path="/mypage/master" element={<MyPage />} />
