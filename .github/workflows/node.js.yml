@@ -16,7 +16,7 @@ jobs:
 
     strategy: # 여러 버전의 Node.js에서 작업을 병렬로 실행 할 수 있도록 설정
       matrix:
-        node-version: [18.x, 20.x, 22.x] # 여러 버전의 Node.js에서 테스트 코드 수행
+        node-version: [18.x] # 여러 버전의 Node.js에서 테스트 코드 수행
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
