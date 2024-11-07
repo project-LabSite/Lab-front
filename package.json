@@ -22,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -42,10 +44,12 @@
       "last 1 safari version"
     ]
   },
+  "homepage": "https://project-labsite.github.io/Lab-front/",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
+    "gh-pages": "^6.2.0",
     "http-proxy-middleware": "^3.0.3",
     "puppeteer": "^23.6.1",
     "tailwindcss": "^3.4.10"
