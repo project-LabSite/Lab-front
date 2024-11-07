@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Lab-front/static/css/main.3b95e532.css",
+    "main.js": "/Lab-front/static/js/main.8033e57d.js",
+    "static/js/453.4bd82692.chunk.js": "/Lab-front/static/js/453.4bd82692.chunk.js",
+    "static/media/energy-bg.png": "/Lab-front/static/media/energy-bg.e0a9ee8dd5a698f931f2.png",
+    "static/media/profile.jpg": "/Lab-front/static/media/profile.be08546a91c3a058c860.jpg",
+    "index.html": "/Lab-front/index.html",
+    "main.3b95e532.css.map": "/Lab-front/static/css/main.3b95e532.css.map",
+    "main.8033e57d.js.map": "/Lab-front/static/js/main.8033e57d.js.map",
+    "453.4bd82692.chunk.js.map": "/Lab-front/static/js/453.4bd82692.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3b95e532.css",
+    "static/js/main.8033e57d.js"
+  ]
+}
