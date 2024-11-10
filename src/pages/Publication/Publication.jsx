@@ -75,7 +75,7 @@ const Publication = () => {
   };
 
   return (
-    <div className="pt-28 pb-10 flex flex-col items-center w-4/5 max-w-screen-lg mx-auto mb-20">
+    <div className="pt-28 pb-10 w-4/5 max-w-screen-lg mx-auto mb-20">
       <div className="fixed top-1/4 bg-gray-800 text-white shadow-lg rounded right-[5%] hidden md:block">
         {sidebarYears.map((year, index) => (
           <PublicationSide
@@ -87,7 +87,7 @@ const Publication = () => {
           />
         ))}
       </div>
-      <div className="pl-6 text-4xl text-gray-800 font-medium py-4 border-b-2 border-blue-800 w-full mb-8">
+      <div className="text-center text-2xl sm:text-3xl md:text-4xl text-gray-800 font-medium py-2  sm:py-4 border-b-2 border-gray-400 w-full mb-4">
         국내외 논문
       </div>
       <div className="flex flex-col items-center w-full px-4">
@@ -103,10 +103,10 @@ const Publication = () => {
               ref={(el) => (yearRef.current[year] = el)}
               className="mb-8 w-full"
             >
-              <div className="text-4xl text-center font-semibold gray-800">
+              <div className="text-2xl sm:text-3xl md:text-4xl text-gray-800 font-semibold ">
                 {year === 0 ? "-" : year}
               </div>
-              <div className="mt-4 ml-4 shadow-md rounded-lg p-6 bg-white">
+              <div className="md:mt-4 md:ml-4 md:shadow-md  md:rounded-lg md:p-6 bg-white">
                 <PublicationCard
                   publicationItems={filterPublicationsByYear(year)}
                 />
