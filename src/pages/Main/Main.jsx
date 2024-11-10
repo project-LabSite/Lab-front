@@ -50,7 +50,7 @@ const Main = () => {
             Polymer Lab
           </div>
         </div>
-        <div className="relative bg-white bg-opacity-30 p-2 md:p-6 rounded-lg shadow-md max-w-sm md:max-w-md lg:max-w-4xl w-full ml-auto overflow-hidden">
+        <div className="relative bg-white bg-opacity-30 p-2 md:p-4 rounded-lg shadow-md max-w-sm md:max-w-md lg:max-w-4xl w-full ml-auto overflow-hidden">
           <div className="aspect-w-16 aspect-h-9">
             {images.map((image, index) => (
               <img
