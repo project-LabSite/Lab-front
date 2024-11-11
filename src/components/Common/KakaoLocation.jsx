@@ -39,10 +39,8 @@ const KakaoLocation = () => {
     <div className="m-1">
       <div id="map" className="w-full h-96"></div>
       <div className="flex mt-2">
-        <FontAwesomeIcon className="m-1" icon={faMapMarkerAlt} />
-        <div className="text-sm">
-          경남 진주시 내동로 139번길 8번지 내동캠퍼스 612호
-        </div>
+        <FontAwesomeIcon className="mx-1" icon={faMapMarkerAlt} />
+        <div>경남 진주시 내동로 139번길 8번지 내동캠퍼스 612호</div>
       </div>
     </div>
   );

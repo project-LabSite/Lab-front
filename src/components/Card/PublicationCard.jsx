@@ -16,11 +16,10 @@ const PublicationCard = ({ publicationItems }) => {
     return item;
   });
 
-  // 모바일에서 상세 정보를 토글할 때 사용
   const [openIndex, setOpenIndex] = useState(null);
 
   const handleToggle = (index) => {
-    setOpenIndex(openIndex === index ? null : index); // 같은 카드 클릭 시 닫히게 하기
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
@@ -51,7 +50,6 @@ const PublicationCard = ({ publicationItems }) => {
               {item.title}
             </a>
 
-            {/* 화살표 아이콘: 모바일에서만 토글 가능 */}
             <FontAwesomeIcon
               icon={openIndex === index ? faChevronUp : faChevronDown}
               className="cursor-pointer md:hidden"
