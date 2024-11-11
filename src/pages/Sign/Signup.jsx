@@ -4,25 +4,50 @@ import {
   faUser,
   faLock,
   faEnvelope,
-  faPhone,
   faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 const Signup = ({ toggleForm }) => {
   const [selected, setSelected] = useState(false);
+  const [formData, setFormData] = useState({
+    user_name: "",
+    user_name_e: "",
+    position: "",
+    user_id: "",
+    user_pw: "",
+    user_email: "",
+  });
 
   const handleChange = (e) => {
-    if (e.target.value !== "") {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+    if (e.target.id === "position" && value !== "") {
+      axios.post("");
       setSelected(true);
     } else {
       setSelected(false);
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("", formData);
+      console.log("Success : ", res.data);
+      toggleForm();
+    } catch (error) {
+      console.error("Error : ", error);
+    }
+  };
   return (
     <div className="w-full max-w-md border border-blue-200 rounded-lg p-10">
-      <form className="flex flex-col space-y-4">
+      <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
         <div className="relative">
-          <label htmlFor="name" className="sr-only">
+          <label htmlFor="user_name" className="sr-only">
             이름
           </label>
           <FontAwesomeIcon
@@ -30,14 +55,29 @@ const Signup = ({ toggleForm }) => {
             className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
           />
           <input
-            id="name"
+            id="user_name"
             type="text"
             placeholder="이름을 입력하세요"
             className="pl-10 p-2 w-full border border-blue-300 rounded-md shadow-sm focus:outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-300"
             required
           />
         </div>
-
+        <div className="relative">
+          <label htmlFor="user_name_e" className="sr-only">
+            영문 이름
+          </label>
+          <FontAwesomeIcon
+            icon={faUser}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+          />
+          <input
+            id="user_name_e"
+            type="text"
+            placeholder="영문 이름을 입력하세요"
+            className="pl-10 p-2 w-full border border-blue-300 rounded-md shadow-sm focus:outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-300"
+            required
+          />
+        </div>
         <div className="relative">
           <label htmlFor="position" className="sr-only">
             직위
@@ -150,28 +190,9 @@ const Signup = ({ toggleForm }) => {
             required
           />
         </div>
-
-        <div className="relative">
-          <label htmlFor="user_phone" className="sr-only">
-            핸드폰 번호
-          </label>
-          <FontAwesomeIcon
-            icon={faPhone}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-          />
-          <input
-            id="user_phone"
-            type="tel"
-            placeholder="핸드폰 번호를 입력하세요"
-            className="pl-10 p-2 w-full border border-blue-300 rounded-md shadow-sm focus:outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-300"
-            required
-          />
-        </div>
-
         <button
           type="submit"
           className="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-          onClick={toggleForm}
         >
           회원가입
         </button>
