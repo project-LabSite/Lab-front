@@ -1,5 +1,6 @@
 import "../assets/styles/tailwind.css";
 import { useState } from "react";
+import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Nav from "../Layout/Nav/Nav";
 import Main from "../pages/Main/Main";
@@ -15,6 +16,7 @@ import TextEditor from "../components/Common/TextEditor/TextEditor";
 import Modal from "../components/Modal/Modal";
 import PublishButton from "../components/Common/PublishButton";
 import Footer from "../Layout/Footer/Footer";
+import store from "../store/auth/index.js";
 
 function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -23,16 +25,18 @@ function App() {
   const closeLoginModal = () => setIsLoginModalOpen(false);
 
   return (
-    <BrowserRouter>
-      <Nav openLoginModal={openLoginModal} />
-      <AppRoutes />
-      {isLoginModalOpen && (
-        <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
-          <Sign />
-        </Modal>
-      )}
-      <Footer />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Nav openLoginModal={openLoginModal} />
+        <AppRoutes />
+        {isLoginModalOpen && (
+          <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
+            <Sign />
+          </Modal>
+        )}
+        <Footer />
+      </BrowserRouter>
+    </Provider>
   );
 }
 

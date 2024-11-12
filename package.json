@@ -48,11 +48,13 @@
   "homepage": "https://project-labsite.github.io/Lab-front/",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
     "gh-pages": "^6.2.0",
     "http-proxy-middleware": "^3.0.3",
     "puppeteer": "^23.6.1",
+    "react-redux": "^9.1.2",
     "tailwindcss": "^3.4.10"
   }
 }

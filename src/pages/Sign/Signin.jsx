@@ -1,10 +1,42 @@
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/auth/slices/userSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 
 const Signin = ({ toggleForm }) => {
+  const dispatch = useDispatch();
+
+  const [userInfo, setUserInfo] = useState({
+    id: "",
+    password: "",
+    userPass: 0,
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const users = [
+      { userPass: 0, id: "none", password: "none" },
+      { userPass: 1, id: "user", password: "user" },
+      { userPass: 2, id: "admin", password: "admin" },
+    ];
+
+    const user = users.find(
+      (u) => u.id === userInfo.id && u.password === userInfo.password
+    );
+
+    if (user && user.userPass !== 0) {
+      dispatch(login(user));
+      console.log("login success");
+    } else {
+      alert("로그인 정보가 올바르지 않습니다.");
+    }
+  };
+
   return (
     <div className="w-full max-w-md border border-blue-200 rounded-lg p-8">
-      <form className="flex flex-col space-y-4">
+      <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
         <div className="relative">
           <label htmlFor="user_id" className="sr-only">
             아이디
@@ -19,6 +51,9 @@ const Signin = ({ toggleForm }) => {
             placeholder="아이디를 입력하세요"
             className="pl-10 p-2 w-full border border-blue-300 rounded-md shadow-sm   focus:outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-300"
             required
+            value={userInfo.id}
+            autoComplete="current-password"
+            onChange={(e) => setUserInfo({ ...userInfo, id: e.target.value })}
           />
         </div>
         <div className="relative">
@@ -35,6 +70,11 @@ const Signin = ({ toggleForm }) => {
             placeholder="비밀번호를 입력하세요"
             className="pl-10 p-2 w-full border border-blue-300 rounded-md shadow-sm   focus:outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-300"
             required
+            value={userInfo.password}
+            autoComplete="current-password"
+            onChange={(e) =>
+              setUserInfo({ ...userInfo, password: e.target.value })
+            }
           />
         </div>
         <div className="flex items-center space-x-2">
@@ -57,7 +97,7 @@ const Signin = ({ toggleForm }) => {
       <div className="mt-4 flex justify-end text-sm text-gray-400">
         <div
           to="/signup"
-          className="hover:underline  cursor-pointer"
+          className="hover:underline cursor-pointer"
           onClick={toggleForm}
         >
           회원 가입
